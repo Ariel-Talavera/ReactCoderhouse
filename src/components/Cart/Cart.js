@@ -1,7 +1,24 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { CartContext } from '../cartContext';
+import CartTable from '../Cart/CartTable';
 
-export default function Cart(props) {
+export default function Cart() {
+  const [cart] = useContext(CartContext);
   return (
-    <h1>Carrito! (Por ahora vacío)</h1>
+    <>
+    <div className="Home">
+      <h2 className="Home-Title"><u>Carrito de compras</u></h2>
+      {cart.length > 0 &&
+        <div className="cards-container">
+          <CartTable/>
+        </div>
+      }
+      {cart.length == 0 &&
+        <div>
+          <span>No tiene items en el carrito!</span>
+        </div>
+      }
+    </div>
+    </>
   )
 }

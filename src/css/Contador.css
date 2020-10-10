@@ -2,3 +2,57 @@
     width: 30px;
     text-align: center;
 }
+.Contador, .Buttons{
+    width: 100%;
+}
+.Buy-button, .ButtonLink{
+    display: inline-block;
+    width: 60%;
+    margin-top: 20px;
+    text-align: center;
+    height: 45px;
+    padding-top: 10px;
+    border-radius: 5px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+}
+
+.ButtonLink{
+    width: 50% !important;
+    background: #3f4775;
+}
+
+/* Button colour based on card type */
+.Spell{
+    background: #1b9e8e;
+}
+.Trap{
+    background: #1b9e8e;
+}
+.Ritual{
+    background: #4169af;
+}
+.Fusion{
+    background: #8f5097;
+}
+.Effect, .Normal{
+    background: #ac5b2e;
+}
+.Synchro{
+    background: #bd2130;
+}
+
+.ButtonLink, .Buy-button span {
+    color: white;
+    font-size: 15px;
+    font-weight: bold;
+    color: white;
+}
+
+.showBuyingInterface {
+    display: block;
+}
+
+.hideBuyingInterface {
+    display: none;
+}

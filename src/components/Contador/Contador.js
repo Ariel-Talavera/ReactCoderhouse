@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import Button from './Button';
-import Input from './Input';
 import '../../css/Contador.css';
 
 export default class Contador extends Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
-          count: 0
+          count: 0,
+          cardType: this.props.cardType
         }
         this.lowerLimit = 0;
         this.upperLimit = 3;
@@ -40,8 +40,10 @@ export default class Contador extends Component {
     render() {
         return (
             <div className='Contador'>
+                <div className={`Buy-button ${this.state.cardType}`}>
+                    <span id="amount-span" amount={this.state.count}>{this.state.count} copias seleccionadas</span>
+                </div>
                 <Button onClick={this.handleSubstract} operator={'-'}></Button>
-                <Input count={this.state.count} handleChange={this.handleChange}></Input>
                 <Button onClick={this.handleAdd} operator={'+'}></Button>
             </div>
         )

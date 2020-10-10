@@ -1,33 +1,64 @@
-import React, { Component } from 'react';
+import React, { useContext } from 'react';
+import { render } from '@testing-library/react';
+import { NavLink, useParams, useHistory  } from 'react-router-dom';
+import Swal from 'sweetalert2'
+
 import Contador from './Contador/Contador';
 import '../../node_modules/font-awesome/css/font-awesome.min.css';
+import { CartContext } from './cartContext';
 import '../css/icons.css';
-import { NavLink } from 'react-router-dom';
 
-export default class Item extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      cardInfo: this.props.data,
-      id: this.props.id
+function Item({data}) {
+  const { id } = useParams();
+  const card = data
+  const [cart, setCart] = useContext(CartContext);
+  const history = useHistory()
+
+  const addToCart = () => {
+    let amount = document.getElementById('amount-span').getAttribute('amount')
+    if (amount >= 1 ) {
+      for(let i = 1; i <= amount; i++) {
+        setCart(currentCart => [...currentCart, card])
+      }
+      Swal.fire({
+        title: 'Hecho!',
+        text: 'Las cartas fueron agregadas al carrito',
+        icon: 'success',
+        showCancelButton: true,
+        confirmButtonText: 'Ver más cartas',
+        cancelButtonText: 'Ir al carrito',
+        showLoaderOnConfirm: true,
+      }).then((result) => {
+        if(result.isConfirmed) {
+          history.push("/");
+        } else {
+          history.push("/cart");
+        }
+      })
+    } else {
+      Swal.fire('Error', 'Debe seleccionar la cantidad de cartas que quiere comprar', 'error')
     }
-    console.log(this.state)
   }
 
-  render() {
-    return (
-      <div className="card-container" id={this.state.cardInfo.id}>
-        <NavLink to={`/product/${this.state.cardInfo.id}`}>
-          <div className='card-Image'>
-            <img src={this.state.id? this.state.cardInfo.card_images[0].image_url : this.state.cardInfo.card_images[0].image_url_small} alt={this.state.cardInfo.name}/>
-          </div>
+  return (
+    <div className="card-container" id={card.id}>
+      <div className='card-Image'>
+        <NavLink to={`/product/${card.id}`}>
+          <img src={id? card.img : card.img_small} alt={card.name}/>
         </NavLink>
-        <p><u>Nombre:</u> {this.state.cardInfo.name}</p>
-        <p><u>Tipo:</u> {this.state.cardInfo.type}</p>
-        <p><u>Arquetipo:</u> {this.state.cardInfo.archetype}</p>
-        <p><u>Precio estimado:</u> US${this.state.cardInfo.card_prices[0].amazon_price}</p>
-        <span className='card-buy-span'>Comprar: </span><Contador /><NavLink to='/cart/'><i className='fa fa-shopping-cart'></i></NavLink>
       </div>
-    )
-  }
+      <p><u>Nombre:</u> {card.name}</p>
+      <p><u>Tipo:</u> {card.type}</p>
+      <p><u>Arquetipo:</u> {card.archetype}</p>
+      <p><u>Precio (Amazon US):</u> US${card.amazon_price}</p>
+      <div className={(id ? 'showBuyingInterface' : 'hideBuyingInterface')}>
+        <Contador cardType={card.type.replace(/ .*/,'')}/>
+        <div class='Buttons'>
+          <button onClick={addToCart}>Comprar cartas</button>
+        </div>
+      </div>
+    </div>
+  )
 }
+
+export default Item;

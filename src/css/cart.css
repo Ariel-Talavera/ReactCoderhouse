@@ -3,3 +3,20 @@
     height: 50px;
     padding-right: 10px;
 }
+
+.cart-table {
+    width: 1000px;
+}
+
+.cart-table th, td {
+    border-style: solid;
+    border-color: #1b9e8e;
+}
+
+.cart-table th:first-of-type {
+    width: 20%;
+}
+
+.cart-table th:last-child {
+    width: 20%;
+}
