@@ -7,6 +7,7 @@ import MainNavbar from './components/Navbar';
 import ItemList from './components/ItemList';
 import Product from "./components/Product";
 import Cart from "./components/Cart/Cart";
+import MyOrder from "./components/Order/Order";
 import { CartProvider } from './components/cartContext';
 
 export default class App extends Component {
@@ -23,7 +24,7 @@ export default class App extends Component {
             <div className="App">
               <header className="App-header">
                 <Route exact path='/featured'>
-                  <h3><u>Cartas ultra raras!</u></h3>
+                  <h3 className='rarity-banner'><u>Cartas ultra raras!</u></h3>
                   <ItemList featured='true'/>
                 </Route>
                 <Route exact path='/'>
@@ -34,6 +35,9 @@ export default class App extends Component {
                 </Route>
                 <Route path='/cart/'>
                   <Cart />
+                </Route>
+                <Route path='/my-order/:id'>
+                  <MyOrder />  
                 </Route>
               </header>
             </div>

@@ -17,6 +17,26 @@
     width: 20%;
 }
 
-.cart-table th:last-child {
+.cart-table th:eq(3) {
     width: 20%;
+}
+
+.send-order {
+    margin-top: 20px;
+}
+
+.send-order-span {
+    width: 60%;
+    margin-top: 20px;
+    text-align: center;
+    height: 45px;
+    padding-top: 10px;
+    border-radius: 5px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+}
+
+.Home-Cart {
+    background-color: #00282cd9;
+    padding: 50px;
 }

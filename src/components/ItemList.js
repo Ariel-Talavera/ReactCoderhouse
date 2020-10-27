@@ -16,18 +16,6 @@ export default class ItemList extends Component {
     }
 
     fetchCards = () => {
-        // let url = 'https://db.ygoprodeck.com/api/v7/cardinfo.php'
-        // this.state.id ? url = url + '?id=' + this.state.id : url = url + '?archetype=Blue-Eyes&num=15&offset=0'
-        // fetch(url).then(data => {
-        //     return data.json();
-        // }).then(results => {
-        //     let cards = results.data.map((card) => {
-        //         return card
-        //     })
-        //     debugger
-        //     this.setState({cards: cards, loading: false})
-        // })
-
         this.setState({loading: true})
         const db = getFirestore()
         const itemCollection = db.collection('cards');

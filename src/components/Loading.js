@@ -6,7 +6,7 @@ export function Loading() {
     return (
         <div>
             <img src={cart} className='rotate'/>
-            <span className='loading-span'>Cargando la mejor mano...</span>
+            <span className='loading-span'><div className='loading-text'>Cargando la mejor mano...</div></span>
         </div>
     )
 }

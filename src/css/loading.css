@@ -16,4 +16,11 @@
 .loading-span {
   margin-top: 20px;
   display: block;
+  width: 100%;
+}
+
+.loading-text {
+  background-color: #00282cd9;
+  margin-left: 38%;
+  margin-right: 38%;
 }

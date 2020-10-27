@@ -1,5 +1,4 @@
 import React, { useContext } from 'react';
-import { render } from '@testing-library/react';
 import { NavLink, useParams, useHistory  } from 'react-router-dom';
 import Swal from 'sweetalert2'
 
@@ -47,10 +46,12 @@ function Item({data}) {
           <img src={id? card.img : card.img_small} alt={card.name}/>
         </NavLink>
       </div>
-      <p><u>Nombre:</u> {card.name}</p>
-      <p><u>Tipo:</u> {card.type}</p>
-      <p><u>Arquetipo:</u> {card.archetype}</p>
-      <p><u>Precio (Amazon US):</u> US${card.amazon_price}</p>
+      <div className='card-data'>
+        <p><u>Nombre:</u> {card.name}</p>
+        <p><u>Tipo:</u> {card.type}</p>
+        <p><u>Arquetipo:</u> {card.archetype}</p>
+        <p><u>Precio (Amazon US):</u> US${card.amazon_price}</p>
+      </div>
       <div className={(id ? 'showBuyingInterface' : 'hideBuyingInterface')}>
         <Contador cardType={card.type.replace(/ .*/,'')}/>
         <div class='Buttons'>
