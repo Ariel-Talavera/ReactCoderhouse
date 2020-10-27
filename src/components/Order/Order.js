@@ -6,12 +6,8 @@ import Swal from 'sweetalert2'
 
 function Order({data}) {
     const { id } = useParams();
-    const [products, setProducts] = useState({
-        "buyer": {},
-        "items": [],
-        "total": "" 
-    });
     const [loading, setLoading] = useState(false);
+    let products = {}
 
     const fetchOrder = () => {
         setLoading(true);
@@ -21,16 +17,9 @@ function Order({data}) {
             const item = itemCollection.doc(id);
             item.get().then((doc) => {
                 if (doc.exists) {
-                    const order = doc.data();
-                    setProducts(order)    
-                    console.log(id, products)
-                    debugger
+                    products = doc.data();
                 }
                 setLoading(false)
-                // setProducts(doc.docs.map(doc => {
-                    //     return ({ id: doc.id, ...doc.data() });
-                    // }));
-                return true;
             })
             .catch((error) => {
                 Swal.fire('Error', 'Error searching item: ' + error, 'error')
@@ -44,17 +33,13 @@ function Order({data}) {
 
     return (
         <>
-            {
-                loading && <Loading/>
-            }
-            {products.length > 0 && !loading &&
+            { loading && <Loading/> }
+            {Object.keys(products).length > 0 && !loading &&
                 <div className="Home-Cart">
-                    <div className="cards-container">
-                        Proximamente!
-                    </div>
+                    Proximamente!
                 </div>
             }
-            {products.length === 0 && !loading &&
+            {Object.keys(products).length === 0 && !loading &&
                 <div className="Home-Cart">
                     <span>No hay órdenes con el ID proporcionado. <br></br> Por favor, revise el ID ingresado e intente nuevamente.</span>
                 </div>

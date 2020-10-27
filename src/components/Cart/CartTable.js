@@ -78,6 +78,7 @@ function CartTable() {
       cart_ids.forEach(element => {
         items.push({'id': element, 'quantity': card_groups[element].length})
       });
+      debugger
       const docData = {
         buyer: {
           name: result.value[0],
@@ -93,7 +94,7 @@ function CartTable() {
         Swal.fire({
           icon: 'success',
           title: 'Hecho!',
-          text: 'La orden fue solicitada exitosamente. Nos comunicaremos con usted a la brevedad. <br> Su ID de pedido es ' + docRef.id
+          text: 'La orden fue solicitada exitosamente. Nos comunicaremos con usted a la brevedad. Su ID de pedido es ' + docRef.id
         })
       }).catch(function(error) {
         Swal.fire({
